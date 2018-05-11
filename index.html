@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="UTF-8">
+   <link href="resources/css/reset.css" rel="stylesheet" type="text/css"><link>
+   
+   <!--
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  -->
+   <script src="https://use.fontawesome.com/4078410715.js"></script>
+   <link href="resources/css/style.css" rel="stylesheet" type="text/css"><link>
+   <title>Mastermind</title>
+ </head>
+
+ <body>
+ 	<main class="container">
+    <div class="hidden-on-start">
+      <div id="infoModal" class="modal">
+        <div class="modal-content">
+          <span class="infoClose close">&times;</span>
+          <h4>Instructions</h4>
+          <p>Try to guess the color series of the Mastermind.</p>
+          <p>Click on the pins (right and left click) to change the color of your pins.</p>
+          <p>Press the check mark to confirm your guess.</p>
+          <p>The Mastermind will tell you how close you are with his white and black pins.</p>
+          <p>A white pin means that you guessed one of his pins right.</p>
+          <p>A black pin means that you guessed the right color but it's in the wrong place.</p>
+          <p>---</p>
+          <p>The green difficulty won't have repeated colours.</p>
+          <p>The red difficulty may have repeated colours.</p>
+        </div>
+      </div>
+      <div id="winModal" class="modal">
+        <div class="modal-content">
+          <span class="winClose close">&times;</span>
+          <h4>You've won!</h4>
+          <p id="win-turns">You guessed the right combination in x rounds.</p>
+          <p id="win-timer">It took you x seconds.</p>
+        </div>
+      </div>
+    </div>
+
+      <!-- Game -->
+
+    <div class="header grid-parent">
+ 			<div id="difficulty" class="grid-left" onclick="changeDifficulty()">
+        <h5>Difficulty</h5>
+        <span>Change difficulty and restart</span>
+      </div>
+ 			<div class="title grid-middle"><h1>Mastermind</h1></div>
+ 			<div id="infoBtn" class="info grid-right">
+        <i class="fa fa-info fa-2x"></i>
+      </div>
+
+ 		</div>
+ 		<div class="header-2 grid-parent">
+ 			<div id="restart" class="grid-left" onclick="restart()"><h5>Restart</h5></div>
+ 			<div class="answer grid-middle">
+ 				<div class="answer-1 col-3"><i class="fa fa-map-pin fa-3x"></i></div>
+ 				<div class="answer-2 col-3"><i class="fa fa-map-pin fa-3x"></i></div>
+ 				<div class="answer-3 col-3"><i class="fa fa-map-pin fa-3x"></i></div>
+ 				<div class="answer-4 col-3"><i class="fa fa-map-pin fa-3x"></i></div>
+ 			</div>
+ 			<div id="turn" class="grid-right"><p>10</p></div>
+ 		</div>
+
+
+ 		<div id="game">
+	 	   <div class="try grid-parent">
+			 	<div class="indicatorpins grid-left">
+          <div class="row">
+            <i class="pin-1 fa fa-map-pin fa-lg"></i>
+  	 				<i class="pin-2 fa fa-map-pin fa-lg"></i>
+          </div>
+	 				<div class="row">
+            <i class="pin-3 fa fa-map-pin fa-lg"></i>
+  	 				<i class="pin-4 fa fa-map-pin fa-lg"></i>
+	 				</div>
+	 			</div>
+	 			<div class="guesses grid-middle">
+	 				<div class="guess-1 col-3"><i class="fa fa-map-pin fa-2x"></i></div>
+	 				<div class="guess-2 col-3"><i class="fa fa-map-pin fa-2x"></i></div>
+	 				<div class="guess-3 col-3"><i class="fa fa-map-pin fa-2x"></i></div>
+	 				<div class="guess-4 col-3"><i class="fa fa-map-pin fa-2x"></i></div>
+	 			</div>
+	 			<div class="confirm grid-right">
+	 				<i class="fa fa-check fa-2x"></i>
+	 			</div>
+	 		</div>
+
+    <!--
+      <div class="another-option">
+        <div class="try grid-parent">
+         <div class="indicatorpins grid-left">
+           <div class="row">
+             <div class="pin-1"></div>
+             <div class="pin-2"></div>
+           </div>
+           <div class="row">
+             <div class="pin-3"></div>
+             <div class="pin-4"></div>
+           </div>
+         </div>
+         <div class="guesses grid-middle">
+           <div class="guess-1 col-3"></div>
+           <div class="guess-2 col-3"></div>
+           <div class="guess-3 col-3"></div>
+           <div class="guess-4 col-3"></div>
+         </div>
+         <div class="confirm grid-right">
+           <i class="fa fa-check fa-2x"></i>
+         </div>
+       </div>
+      </div>
+    -->
+
+ 		</div>
+
+
+ 	</main>
+  <footer>
+    <div class="author">
+      <p>&copy; Hákon Bjarnason / 2018</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+ 	<script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"   integrity="sha256-H28SdxWrZ387Ldn0qogCzFiUDDxfPiNIyJX7BECQkDE="   crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <!--
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  -->
+  <script src="resources/js/main.js" type="text/javascript"></script>
+
+
+ </body>
+</html>
