@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	restart();
 	//only for testing
-	$('.title').click(renderAnswer);
+	//$('.title').click(renderAnswer);
 });
 
 
