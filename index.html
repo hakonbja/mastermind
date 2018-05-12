@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
  <head>
-   <meta charset="UTF-8">
+   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
    <link href="resources/css/reset.css" rel="stylesheet" type="text/css"><link>
-   
+
    <!--
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   -->
@@ -44,7 +44,9 @@
 
     <div class="header grid-parent">
  			<div id="difficulty" class="grid-left" onclick="changeDifficulty()">
-        <h5>Difficulty</h5>
+        <h5 class="desktop">Difficulty</h5>
+        <h5 class="mobile">Diffi-</h5>
+        <h5 class="mobile">culty</h5>
         <span>Change difficulty and restart</span>
       </div>
  			<div class="title grid-middle"><h1>Mastermind</h1></div>
@@ -54,7 +56,11 @@
 
  		</div>
  		<div class="header-2 grid-parent">
- 			<div id="restart" class="grid-left" onclick="restart()"><h5>Restart</h5></div>
+ 			<div id="restart" class="grid-left" onclick="restart()">
+        <h5 class="desktop">Restart</h5>
+        <h5 class="mobile">Re-</h5>
+        <h5 class="mobile">start</h5>
+      </div>
  			<div class="answer grid-middle">
  				<div class="answer-1 col-3"><i class="fa fa-map-pin fa-3x"></i></div>
  				<div class="answer-2 col-3"><i class="fa fa-map-pin fa-3x"></i></div>

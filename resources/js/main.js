@@ -92,7 +92,7 @@ function createAnswerEasy() {
 		answer.push(randomColor);
 		possibleColors.splice(randomNumber, 1);
 	}
-	//$('#difficulty').css('color', GREEN);
+	$('#difficulty').css('color', GREEN);
 	$('.header-2').css('box-shadow', '0px 1px 2px ' + GREENHEX + ', 0px -1px 2px' + GREENHEX);
 	return answer;
 }
@@ -106,7 +106,7 @@ function createAnswerHard() {
 		var randomColor = possibleColors[randomNumber];
 		answer.push(randomColor);
 	}
-	//$('#difficulty').css('color', 'rgb(255, 81, 93)');
+	$('#difficulty').css('color', 'rgb(255, 81, 93)');
 	$('.header-2').css('box-shadow', '0px 1px 2px ' + REDHEX + ', 0px -1px 2px' + REDHEX);
 
 	return answer;

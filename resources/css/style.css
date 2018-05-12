@@ -24,6 +24,9 @@ body {
   flex-direction: column;
   align-items: center; }
 
+main {
+  flex: 1 0 auto; }
+
 .container {
   width: 1020px;
   display: flex;
@@ -34,7 +37,8 @@ body {
   grid-template-columns: 1fr 4fr 1fr; }
   .grid-parent .grid-left {
     grid-column: 1;
-    grid-row: 1; }
+    grid-row: 1;
+    margin-left: 0.5rem; }
   .grid-parent .grid-middle {
     grid-column: 2;
     grid-row: 1;
@@ -43,7 +47,11 @@ body {
     margin: 0 4rem; }
   .grid-parent .grid-right {
     grid-column: 3;
-    grid-row: 1; }
+    grid-row: 1;
+    margin-right: 0.5rem; }
+
+.mobile {
+  display: none; }
 
 h1,
 h4,
@@ -117,60 +125,60 @@ i {
 
 /* Game column */
 /* Game headers */
-main {
-  flex: 1 0 auto; }
-
 .header {
   align-items: center;
   width: 100%; }
-  .header #difficulty {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-    margin-left: 0.5rem;
-    color: #212529; }
-    .header #difficulty span {
-      font-family: 'Roboto', sans-serif;
-      color: white;
-      font-size: 0.75rem;
-      line-height: 1.5;
-      background-color: #212529;
-      text-align: center;
-      padding: 0.25rem;
-      border-radius: 5px;
-      width: 5rem;
-      visibility: hidden;
-      opacity: 0;
-      transition: all 0.75s linear;
-      position: absolute;
-      z-index: 10;
-      top: 150%; }
-  .header #difficulty:hover span {
-    opacity: 1;
-    visibility: visible; }
-  .header .title {
-    font-size: 3rem;
-    color: #212529; }
-  .header .info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 0.5rem; }
-    .header .info i {
-      color: #212529;
-      cursor: pointer; }
+
+#difficulty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  color: #212529; }
+  #difficulty span {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    background-color: #212529;
+    text-align: center;
+    padding: 0.25rem;
+    border-radius: 5px;
+    width: 5rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.75s linear;
+    position: absolute;
+    z-index: 10;
+    top: 120%; }
+
+#difficulty:hover span {
+  opacity: 1;
+  visibility: visible; }
+
+.title {
+  font-size: 3rem;
+  color: #212529; }
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .info i {
+    color: #212529;
+    cursor: pointer; }
 
 .header-2 {
   margin: 2rem 0; }
 
 #restart {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  margin-left: 0.5rem; }
+  cursor: pointer; }
   #restart p {
     color: #212529;
     margin: 0; }
@@ -184,8 +192,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #212529;
-  margin-right: 0.5rem; }
+  color: #212529; }
   #turn h5 {
     font-size: 1.5rem; }
 
@@ -208,8 +215,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin-left: 0.5rem; }
+  align-items: center; }
   .indicatorpins .row:first-of-type {
     margin-bottom: 0.75rem; }
   .indicatorpins i {
@@ -223,8 +229,7 @@ main {
 .confirm {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-right: 0.5rem; }
+  align-items: center; }
   .confirm i {
     color: #c8c8c8; }
   .confirm i:active {
@@ -259,6 +264,7 @@ main {
 
 footer {
   display: flex;
+  flex: 0 0 auto;
   justify-content: flex-end;
   align-items: flex-end;
   background-color: #8b8b8e;
@@ -289,12 +295,24 @@ footer {
     margin-bottom: 0.5rem; }
   .indicatorpins i {
     padding: 0 0.5rem; } }
-@media only screen and (max-width: 580px) {
+@media only screen and (max-width: 560px) {
   .container {
     width: 100%; }
 
+  .desktop {
+    display: none; }
+
+  .mobile {
+    display: block; }
+
+  .grid-parent .grid-middle {
+    margin: 0 2rem; }
+
   .header {
-    margin-top: 0; }
+    margin-top: 0;
+    height: 50px; }
+    .header .info {
+      font-size: 0.75rem; }
 
   .header-2 {
     margin: 1rem 0; }
@@ -304,5 +322,14 @@ footer {
 
   .modal-content {
     width: 90%; } }
+@media only screen and (max-width: 400px) {
+  .grid-parent {
+    grid-template-columns: 1fr 3fr 1fr; }
+    .grid-parent .grid-left {
+      margin-left: 0; }
+    .grid-parent .grid-middle {
+      margin: 0; }
+    .grid-parent .grid-right {
+      margin-right: 0; } }
 
 /*# sourceMappingURL=style.css.map */
