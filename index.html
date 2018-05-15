@@ -3,10 +3,6 @@
  <head>
    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
    <link href="resources/css/reset.css" rel="stylesheet" type="text/css"><link>
-
-   <!--
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  -->
    <script src="https://use.fontawesome.com/4078410715.js"></script>
    <link href="resources/css/style.css" rel="stylesheet" type="text/css"><link>
    <title>Mastermind</title>
@@ -26,16 +22,18 @@
           <p>A white pin means that you guessed one of his pins right.</p>
           <p>A black pin means that you guessed the right color but it's in the wrong place.</p>
           <p>---</p>
-          <p>The green difficulty won't have repeated colours.</p>
-          <p>The red difficulty may have repeated colours.</p>
+          <p>The easy difficulty won't have repeated colours.</p>
+          <p>The hard difficulty may have repeated colours.</p>
         </div>
       </div>
       <div id="winModal" class="modal">
         <div class="modal-content">
           <span class="winClose close">&times;</span>
           <h4>You've won!</h4>
-          <p id="win-turns">You guessed the right combination in x rounds.</p>
-          <p id="win-timer">It took you x seconds.</p>
+          <p id="win-turns"></p>
+          <p id="win-timer"></p>
+          <p>---</p>
+          <p id="highscore"></p>
         </div>
       </div>
     </div>
@@ -44,9 +42,7 @@
 
     <div class="header grid-parent">
  			<div id="difficulty" class="grid-left" onclick="changeDifficulty()">
-        <h5 class="desktop">Difficulty</h5>
-        <h5 class="mobile">Diffi-</h5>
-        <h5 class="mobile">culty</h5>
+        <!--<h5 class="desktop">Difficulty</h5>-->
         <span>Change difficulty and restart</span>
       </div>
  			<div class="title grid-middle"><h1>Mastermind</h1></div>
@@ -62,10 +58,10 @@
         <h5 class="mobile">start</h5>
       </div>
  			<div class="answer grid-middle">
- 				<div class="answer-1 col-3"><i class="fa fa-map-pin fa-3x"></i></div>
- 				<div class="answer-2 col-3"><i class="fa fa-map-pin fa-3x"></i></div>
- 				<div class="answer-3 col-3"><i class="fa fa-map-pin fa-3x"></i></div>
- 				<div class="answer-4 col-3"><i class="fa fa-map-pin fa-3x"></i></div>
+ 				<div class="answer-1"><i class="fa fa-map-pin fa-3x"></i><h5 class="question-mark">?</h5></div>
+ 				<div class="answer-2"><i class="fa fa-map-pin fa-3x"></i><h5 class="question-mark">?</h5></div>
+ 				<div class="answer-3"><i class="fa fa-map-pin fa-3x"></i><h5 class="question-mark">?</h5></div>
+ 				<div class="answer-4"><i class="fa fa-map-pin fa-3x"></i><h5 class="question-mark">?</h5></div>
  			</div>
  			<div id="turn" class="grid-right"><p>10</p></div>
  		</div>
@@ -131,9 +127,10 @@
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
- 	<script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"   integrity="sha256-H28SdxWrZ387Ldn0qogCzFiUDDxfPiNIyJX7BECQkDE="   crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <!--
+
+    <script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"   integrity="sha256-H28SdxWrZ387Ldn0qogCzFiUDDxfPiNIyJX7BECQkDE="   crossorigin="anonymous"></script>
+     	<!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   -->
   <script src="resources/js/main.js" type="text/javascript"></script>
