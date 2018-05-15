@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	restart();
 	//only for testing
-	$('.title').click(renderAnswer);
+	//$('.title').click(renderAnswer);
 });
 
 
@@ -351,11 +351,4 @@ function highScore() {
 			$('#highscore').html(hsHtml);
 	}
 	$('#winModal').fadeIn('slow');
-}
-
-function resetScore() {
-	localStorage.removeItem('tries');
-	localStorage.removeItem('timer');
-	$('#status').html('High score reset.')
-	console.log("High score reset.");
 }
