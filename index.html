@@ -2,13 +2,49 @@
 <html>
  <head>
    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <link rel="apple-touch-icon" sizes="180x180" href="/resources/icons/apple-touch-icon.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="/resources/icons/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="/resources/icons/favicon-16x16.png">
+   <link rel="manifest" href="/resources/icons/site.webmanifest">
+   <link rel="mask-icon" href="/resources/icons/safari-pinned-tab.svg" color="#e03b0e">
+   <link rel="shortcut icon" href="/resources/icons/favicon.ico">
+   <meta name="apple-mobile-web-app-title" content="Mastermind">
+   <meta name="application-name" content="Mastermind">
+   <meta name="msapplication-TileColor" content="#2b5797">
+   <meta name="msapplication-config" content="/resources/icons/browserconfig.xml">
+   <meta name="theme-color" content="#ffffff">
+
    <link href="resources/css/reset.css" rel="stylesheet" type="text/css"><link>
+   <link href="resources/css/style-mini.css" rel="stylesheet" type="text/css"><link>
    <script src="https://use.fontawesome.com/4078410715.js"></script>
-   <link href="resources/css/style.css" rel="stylesheet" type="text/css"><link>
    <title>Mastermind</title>
  </head>
 
  <body>
+  <script> <!-- Facebook SDK for JS initializion -->
+   window.fbAsyncInit = function() {
+     FB.init({
+       appId            : '169764407020903',
+       autoLogAppEvents : true,
+       xfbml            : true,
+       version          : 'v3.0'
+     });
+
+   };
+
+   (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/all.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+
+ </script>
+
  	<main class="container">
     <div class="hidden-on-start">
       <div id="infoModal" class="modal">
@@ -34,6 +70,8 @@
           <p id="win-timer"></p>
           <p>---</p>
           <p id="highscore"></p>
+          <p>Share your high score on Facebook</p> <i class="fa fa-facebook" onclick="shareScore()"></i>
+
         </div>
       </div>
     </div>
@@ -42,6 +80,7 @@
 
     <div class="header grid-parent">
  			<div id="difficulty" class="grid-left" onclick="changeDifficulty()">
+        <h4></h4>
         <!--<h5 class="desktop">Difficulty</h5>-->
         <span>Change difficulty and restart</span>
       </div>
@@ -53,9 +92,9 @@
  		</div>
  		<div class="header-2 grid-parent">
  			<div id="restart" class="grid-left" onclick="restart()">
-        <h5 class="desktop">Restart</h5>
-        <h5 class="mobile">Re-</h5>
-        <h5 class="mobile">start</h5>
+        <h4 class="desktop">Restart</h4>
+        <h4 class="mobile">Re-</h4>
+        <h4 class="mobile">start</h4>
       </div>
  			<div class="answer grid-middle">
  				<div class="answer-1"><i class="fa fa-map-pin fa-3x"></i><h5 class="question-mark">?</h5></div>
@@ -117,7 +156,19 @@
     -->
 
  		</div>
+    
+    <div
+      class="fb-like"
+      data-share="true"
+      data-width="450"
+      data-show-faces="true">
+    </div>
 
+<!--
+    <div class="fb-share-button" data-href="https://mm.hakonbjarnason.com" data-layout="button" data-size="small" data-mobile-iframe="true">
+      <p target="_blank" class="fb-xfbml-parse-ignore"></p>
+    </div>
+-->
 
  	</main>
   <footer>
@@ -128,7 +179,7 @@
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
 
-    <script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"   integrity="sha256-H28SdxWrZ387Ldn0qogCzFiUDDxfPiNIyJX7BECQkDE="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"   integrity="sha256-H28SdxWrZ387Ldn0qogCzFiUDDxfPiNIyJX7BECQkDE="   crossorigin="anonymous"></script>
      	<!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

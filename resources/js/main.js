@@ -1,7 +1,10 @@
 $(document).ready(function(){
 	restart();
 	//only for testing
-	//$('.title').click(renderAnswer);
+	if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+		$('.title').click(renderAnswer);
+	}
+
 });
 
 
@@ -17,11 +20,11 @@ const REDHEX = '#E03B0E'//'#ff515d';
 const GREEN = 'rgb(88, 148, 17)'; //'#589411';
 const GREENHEX = '#589411';
 
-const BLUEHEX = '#2340A1';
 const BLUE = 'rgb(35, 64, 161)'; //'rgb(81, 180, 255)'
+const BLUEHEX = '#2340A1';
 
-const YELLOWHEX = '#E0C80E';
 const YELLOW = 'rgb(224, 200, 14)'; //'rgb(247, 235, 73)'
+const YELLOWHEX = '#E0C80E';
 
 const COLORS = ['rgb(255, 251, 240)', BLACK, RED, GREEN, BLUE, YELLOW];
 
@@ -51,7 +54,7 @@ function restart() {
 	timer = 0;
 	flag = true;
 	//reset turn counter and return color to black
-	$('#turn').empty().append('<h5>' + turn + '</h5>').css('color', '#212529');
+	$('#turn').empty().append('<h4>' + turn + '</h4>').css('color', '#212529');
 	$('.answer i').css('opacity', '0');
 	$('.question-mark').css({'opacity':'1', 'color':BLACK});
 	clearInterval(timer);
@@ -84,7 +87,7 @@ function createAnswerEasy() {
 		answer.push(randomColor);
 		possibleColors.splice(randomNumber, 1);
 	}
-	$('#difficulty').html('<h5>Easy</h5>').css('color', GREEN);
+	$('#difficulty h4').html('Easy').css('color', GREEN);
 	$('.header-2').css('box-shadow', '0px 1px 2px ' + GREENHEX + ', 0px -1px 2px' + GREENHEX);
 	return answer;
 }
@@ -98,7 +101,7 @@ function createAnswerHard() {
 		var randomColor = possibleColors[randomNumber];
 		answer.push(randomColor);
 	}
-	$('#difficulty').html('<h5>Hard</h5>').css('color', RED);
+	$('#difficulty h4').html('Hard').css('color', RED);
 	$('.header-2').css('box-shadow', '0px 1px 2px ' + REDHEX + ', 0px -1px 2px' + REDHEX);
 
 	return answer;
@@ -138,19 +141,23 @@ function renderGuessRClick() {
 }
 
 function confirmGuess() {
-	var guess = [];
+	$('.confirm i').css('color', GREEN);
+	readGuess();
+}
 
+function readGuess() {
+	var guess = [];
 	for (i = 1; i < 5; i++) {
 		var g = $('.guesses:first .guess-' + i).children().css('color');
 		guess.push(g);
 	}
-	$('.confirm i').css('color', GREEN);
+compareGuess(guess);
+}
 
-//compare guess and answer
+function compareGuess(guess) {
 	var indicatorPins = [];
 	var hits = 0;
 	var tempAnswer = answer.slice();
-
 	for (guessIndex = 0; guessIndex < guess.length; guessIndex++) {
 		if (guess[guessIndex] === tempAnswer[guessIndex]) {
 			//add a white pin to indicatorPins
@@ -172,48 +179,46 @@ function confirmGuess() {
 			}
 		}
 	}
-
-	//render indicatorPins
-	i = 0;
-	renderIndicatorPins();
-
-	function renderIndicatorPins() {
-		setTimeout(function(){
-			$('.indicatorpins:first .pin-' + (i + 1)).animate({color: indicatorPins[i]}, 300);
-			i++;
-			if (i < indicatorPins.length) {
-				renderIndicatorPins();
-			} else {
-				//remove old click handlers
-				removeGuessHandlers();
-				//return if won
-				if (hits === 4) {
-					setTimeout(function(){
-						onWin();
-						return;
-					}, 800);
-					flag = false;
-				}
-				if (flag) {
-					//count down turn # and terminate if turns are up
-					turn--;
-					$('#turn').empty().append('<h5>' + turn + '</h5>');
-					if (turn === 0) {
-						$('#turn').css('color', RED);
-						renderAnswer();
-						removeGuessHandlers();
-						return;
-					}
-					//add one more turn to top of game
-					addTurn();
-					//select new handlers
-					selectFirstChild();
-				}
-
-			}
-		}, 400);
-	};
+	renderIndicatorPins(indicatorPins, hits, i=0);
 }
+
+function renderIndicatorPins(indicatorPins, hits) {
+	setTimeout(function(){
+		$('.indicatorpins:first .pin-' + (i + 1)).animate({color: indicatorPins[i]}, 300);
+		i++;
+		if (i < indicatorPins.length) {
+			renderIndicatorPins(indicatorPins, hits);
+		} else {
+			//remove old click handlers
+			removeGuessHandlers();
+			//return if won
+			if (hits === 4) {
+				setTimeout(function(){
+					onWin();
+					return;
+				}, 800);
+				flag = false;
+			}
+			if (flag) {
+				//count down turn # and terminate if turns are up
+				turn--;
+				$('#turn').empty().append('<h4>' + turn + '</h4>');
+				if (turn === 0) {
+					$('#turn').css('color', RED);
+					renderAnswer();
+					removeGuessHandlers();
+					return;
+				}
+				//add one more turn to top of game
+				addTurn();
+				//select new handlers
+				selectFirstChild();
+			}
+
+		}
+	}, 400);
+}
+
 
 function addTurn() {
 var oneTurn =	'<div class="try grid-parent">' +
@@ -329,21 +334,20 @@ function highScore() {
 	$('#win-timer').html('It took you ' + minutes + ':' + seconds + '.');
 
 	/* High score */
-	var prefix = (difficulty == 0) ? 'green' : 'red';
-	var lsTries = localStorage.getItem(prefix + 'tries');
-	var lsTimer = localStorage.getItem(prefix + 'timer');
+	var prefix = (difficulty == 0) ? 'easy' : 'hard';
+	var lsTries = localStorage.getItem(prefix + 'Tries');
+	var lsTimer = localStorage.getItem(prefix + 'Timer');
 	if (typeof(Storage) !== "undefined") {
 	    // Code for localStorage/sessionStorage.
 
 			if (!lsTries || lsTries > tries || (lsTries == tries && lsTimer > timer)) {
-				console.log("new high score set");
-				localStorage.setItem(prefix + 'tries', tries);
-				localStorage.setItem(prefix + 'timer', timer);
+				localStorage.setItem(prefix + 'Tries', tries);
+				localStorage.setItem(prefix + 'Timer', timer);
 			}
 
-			var hsTries = localStorage.getItem(prefix + 'tries');
-			var hsMinutes = Math.floor((Number(localStorage.getItem(prefix + 'timer')) / 60));
-			var hsSeconds = localStorage.getItem(prefix + 'timer') % 60;
+			var hsTries = localStorage.getItem(prefix + 'Tries');
+			var hsMinutes = Math.floor((Number(localStorage.getItem(prefix + 'Timer')) / 60));
+			var hsSeconds = localStorage.getItem(prefix + 'Timer') % 60;
 			hsMinutes = (hsMinutes < 10) ? '0' + hsMinutes : hsMinutes;
 			hsSeconds = (hsSeconds < 10) ? '0' + hsSeconds : hsSeconds;
 
@@ -351,4 +355,29 @@ function highScore() {
 			$('#highscore').html(hsHtml);
 	}
 	$('#winModal').fadeIn('slow');
+	return [prefix, hsTries, hsMinutes, hsSeconds]
+}
+
+/* FB functions */
+function myFacebookLogin() {
+	FB.login(function(){
+  // Note: The call will only work if you accept the permission request
+  FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+}, {scope: 'publish_actions'});
+}
+
+function shareScore() {
+	var score = highScore();
+	let level = score[0];
+	let tries = score[1];
+	let minutes = score[2];
+	let seconds = score[3];
+
+	FB.ui({
+  method: 'share',
+  href: 'https://mm.hakonbjarnason.com',
+	mobile_iframe: true,
+	quote: 	'I set a new personal high score in Mastermind! ' + tries +
+					' tries in ' + minutes + ':' + seconds + ' on the ' + level + ' difficulty.'
+}, function(response){});
 }
